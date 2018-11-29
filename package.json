@@ -5,7 +5,8 @@
   "main": "eletron/main.js",
   "scripts": {
     "start": "electron eletron/main.js",
-    "build": "node eletron/build.js"
+    "build": "node eletron/build.js",
+    "build2": "node eletron/build2.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,8 @@
   },
   "homepage": "https://github.com/aar0u/Web-Socket-Testing",
   "devDependencies": {
+    "electron-icon-maker": "0.0.4",
+    "electron-installer-debian": "^1.0.0",
     "electron-packager": "^6.0.0",
     "electron-prebuilt": "^0.36.0"
   }
