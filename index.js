@@ -50,6 +50,7 @@
 
     var onOpen = function() {
         console.log('OPENED: ' + serverUrl.val());
+        ws.send('console');
         connected = true;
         connectionStatus.text('OPENED');
         sendMessage.removeAttr('disabled');
@@ -64,7 +65,13 @@
 
     var onMessage = function(event) {
         var data = event.data;
-        addMessage(data);
+        if (filter.val()) {
+            if (data.indexOf(filter.val())>=0) {
+                addMessage(data);
+            }
+        } else {
+            addMessage(data);
+        }
     };
 
     var onError = function(event) {
@@ -88,7 +95,7 @@
 
     var addToHistoryList = function(item) {
         var addedLi = $('<li>').attr('id', item.id).append(
-            $('<a>').attr('href', item.url).attr('data-msg', item.msg).attr('title', item.url + '\n\n' + item.msg).attr('class', 'historyUrl').append(item.url)).append(
+            $('<a>').attr('href', item.url).attr('title', item.url).attr('class', 'historyUrl').append(item.url)).append(
             $('<span>').attr('class', 'removeHistory').append("x")).attr('style', 'display: none;').prependTo(historyList);
 
         addedLi.toggle('slow');
@@ -105,6 +112,10 @@
         $.each(historyItems, function(i, item) {
             addToHistoryList(item);
         });
+
+        if (historyItems.length>0) {
+            serverUrl.val(historyItems[historyItems.length-1].url);
+        } 
     };
 
     var removeHistory = function(item) {
@@ -131,10 +142,13 @@
             s4() + '-' + s4() + s4() + s4();
     };
 
-    var saveHistory = function(msg) {
-        var item = { 'id': guid(), 'url': serverUrl.val(), 'msg': msg };
-
-        removeHistory(item);
+    var saveHistory = function() {
+        var item = { 'id': guid(), 'url': serverUrl.val() };
+        for (var i = historyItems.length - 1; i >= 0; i--) {
+            if (historyItems[i].url === item.url) {
+                return;
+            }
+        }
 
         if (historyItems.length >= 20) {
             historyItems.shift();
@@ -156,6 +170,7 @@
     WebSocketClient = {
         init: function() {
             serverUrl = $('#serverUrl');
+            filter = $('#filter');
             connectionStatus = $('#connectionStatus');
             sendMessage = $('#sendMessage');
             historyList = $('#history');
@@ -173,6 +188,7 @@
             connectButton.click(function(e) {
                 close();
                 open();
+                saveHistory();
             });
 
             disconnectButton.click(function(e) {
@@ -183,8 +199,6 @@
                 var msg = $('#sendMessage').val();
                 addMessage(msg, 'SENT');
                 ws.send(msg);
-
-                saveHistory(msg);
             });
 
             $('#clearMessage').click(function(e) {
@@ -200,7 +214,6 @@
             historyList.delegate('.historyUrl', 'click', function(e) {
                 window.haha1 = this;
                 serverUrl.val(this.href);
-                sendMessage.val(this.dataset.msg);
                 e.preventDefault();
             });
 

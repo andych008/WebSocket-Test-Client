@@ -1,6 +1,6 @@
 {
-  "name": "WebSocket Test Client",
-  "short_name": "wstest",
+  "name": "WebSocket Test Client1",
+  "short_name": "wstest1",
   "manifest_version": 2,
   "version": "0.1.8",
   "description": "A Simple tool to help test WebSocket Service",
@@ -11,11 +11,18 @@
     "128": "resources/icon_128.png"
   },
 
-  "browser_action": {
-    "default_icon": "resources/icon_032.png"
-  },
+  // "browser_action": {
+  //   "default_icon": "resources/icon_032.png"
+  // },
 
+  "app": {
+    "default_icon": "resources/icon_032.png",
+    "launch": {
+        "local_path": "index.html"
+      }
+  },
   "options_page": "index.html",
+  
 
   "background":{
     "scripts": [ "background.js" ]

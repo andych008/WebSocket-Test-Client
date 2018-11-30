@@ -1,17 +1,27 @@
-# Extension URL
+# log-client
 
-https://chrome.google.com/webstore/detail/fgponpodhbmadfljofbimhhlengambbn
+show remote log. work with [log-server](https://github.com/andych008/log-server)
 
-# Build as desktop application
+logcat --> log-server --> log-client 
 
-## run
+## Build as desktop application
+
+- run
 ```
 npm install
 npm run start
 ```
 
-## build to ./dist as desktop application
+- build to ./dist as desktop application
 ```
 npm install
+
+# windows
+npm run build
+
+# ubuntu
 npm run build
 ```
+
+## Build as crx
+chrome --> extensions --> Pack extension
