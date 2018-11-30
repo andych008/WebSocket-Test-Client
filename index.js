@@ -50,6 +50,7 @@
 
     var onOpen = function() {
         console.log('OPENED: ' + serverUrl.val());
+        ws.send('console');
         connected = true;
         connectionStatus.text('OPENED');
         sendMessage.removeAttr('disabled');
