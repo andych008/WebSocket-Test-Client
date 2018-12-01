@@ -1,16 +1,12 @@
 {
-  "name": "web-socket-testing",
+  "name": "log-client",
   "version": "1.0.1",
-  "description": "Web Socket Testing application",
+  "description": "RemoteLog Client",
   "main": "eletron/main.js",
   "scripts": {
     "start": "electron eletron/main.js",
     "build": "node eletron/build.js",
     "build2": "node eletron/build2.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aar0u/Web-Socket-Testing.git"
   },
   "keywords": [
     "Electron",
@@ -20,13 +16,9 @@
   ],
   "author": "RageApp",
   "license": "CC0-1.0",
-  "bugs": {
-    "url": "https://github.com/aar0u/Web-Socket-Testing/issues"
-  },
-  "homepage": "https://github.com/aar0u/Web-Socket-Testing",
   "devDependencies": {
     "electron-icon-maker": "0.0.4",
-    "electron-installer-debian": "^1.0.0",
+    "electron-installer-windows": "^1.1.0",
     "electron-packager": "^6.0.0",
     "electron-prebuilt": "^0.36.0"
   }
