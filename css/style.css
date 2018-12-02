@@ -29,7 +29,7 @@ label {
 
 #content {
     padding: 10px;
-    margin-left: 200px;
+    margin-left: 10px;
     min-width: 600px
 }
 
@@ -67,45 +67,4 @@ label {
 
 #messages pre.sent {
     color: #f63;
-}
-
-#sidebar {
-    padding: 0;
-    padding-right: 10px;
-    margin: 0;
-    font-size: 11px;
-    width: 200px;
-    position: absolute;
-    left: 0;
-    border-right: solid 1px #e9eced;
-    height: calc(100vh - 55px);
-}
-
-#history {
-    width: 175px;
-    list-style: none;
-    display: block;
-    margin: 0;
-    padding: 0;
-}
-
-#history a {
-    width: 165px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: block;
-    overflow: hidden
-}
-
-#history li{
-    position: relative;
-}
-
-.removeHistory
-{
-    text-decoration: underline;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 0;
 }

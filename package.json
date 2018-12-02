@@ -14,11 +14,10 @@
     "start",
     "tutorial"
   ],
-  "author": "RageApp",
+  "author": "andych008",
   "license": "CC0-1.0",
+  "homepage": "https://github.com/andych008/log-client",
   "devDependencies": {
-    "electron-icon-maker": "0.0.4",
-    "electron-installer-windows": "^1.1.0",
     "electron-packager": "^6.0.0",
     "electron-prebuilt": "^0.36.0"
   }
