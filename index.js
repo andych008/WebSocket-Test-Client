@@ -4,6 +4,8 @@
 
     var serverUrl;
     var connectionStatus;
+    var filter;
+    var filterRep;
 
     var connectButton;
     var disconnectButton;
@@ -56,21 +58,26 @@
     };
 
     var onMessage = function(event) {
-        var data = event.data;
-        if (filter.val()) {
-            if (data.indexOf(filter.val())>=0) {
-                addMessage(data);
-            }
-        } else {
-            addMessage(data);
-        }
+        var data = onFilter(event.data);
+        addMessage(data);
     };
 
     var onError = function(event) {
         alert(event.type);
     };
 
-    var addMessage = function(data, type) {
+    var onFilter = function(data) {
+        if (filterRep) {
+            if (filterRep.test(data)) {
+                return data;
+            }
+            return null;
+        } else {
+            return data;
+        }
+    };
+
+    var addMessage = function(data) {
         var msg = $('<pre>').text(data);
         var messages = $('#messages');
         messages.append(msg);
@@ -79,7 +86,7 @@
         while (msgBox.childNodes.length > 1000) {
             msgBox.removeChild(msgBox.firstChild);
         }
-        msgBox.scrollTop = msgBox.scrollHeight;
+        msgBox.scrollTop = msgBox.scrollHeight; 
     };
 
     var loadHistory = function() {
@@ -113,6 +120,14 @@
 
             disconnectButton.click(function(e) {
                 close();
+            });
+
+            filter.change(function(e) {
+                if (filter.val()) {
+                    filterRep = new RegExp(filter.val());  
+                } else {
+                    filterRep = null;  
+                }
             });
 
             $('#clearMessage').click(function(e) {
