@@ -43,6 +43,10 @@ label {
     display: none;
 }
 
+#getFileWrap {
+    display: none;
+}
+
 #requestArea textarea {
     min-width: 300px;
     height: 2em;

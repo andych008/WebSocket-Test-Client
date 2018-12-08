@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Web Socket Testing</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="content">
-        <fieldset>
-            <legend>URL</legend>
-            <div>
-                <input type="text" id="serverUrl" value="ws://example.com/websocket" width="500px" />
-                <button id="connectButton">Open</button>
-                <button id="disconnectButton">Close</button>
-            </div>
-            <div>
-                <label>Status:</label>
-                <span id="connectionStatus">CLOSED</span>
-            </div>
-        </fieldset>
-        <fieldset id="messageArea">
-            <legend>Message Log
-                <input type="text" id="filter" value="" width="150px" />
-                <button id="clearMessage">Clear</button>
-            </legend>
-            <div id="messages"></div>
-        </fieldset>
+      <fieldset>
+        <legend>URL</legend>
+        <div>
+          <input
+            type="text"
+            id="serverUrl"
+            value="ws://example.com/websocket"
+            width="500px"
+          />
+          <button id="connectButton">Open</button>
+          <button id="disconnectButton">Close</button>
+        </div>
+        <div>
+          <label>Status:</label> <span id="connectionStatus">CLOSED</span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Save File</legend>
+        <div>
+          <input type="checkbox" id="isSaveFile" name="isSaveFile" value="false"/> save log to
+          file<br />
+        </div>
+        <div id="getFileWrap">
+          <button id="getFileButton">get File</button><span id="filePath"></span>
+        </div>
+      </fieldset>
+      <fieldset id="messageArea">
+        <legend>
+          Message Log <input type="text" id="filter" value="" width="150px" />
+          <button id="clearMessage">Clear</button>
+        </legend>
+        <div id="messages"></div>
+      </fieldset>
     </div>
     <script type="text/javascript" src="lib/jquery-1.4.3.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
-</body>
-
+  </body>
 </html>

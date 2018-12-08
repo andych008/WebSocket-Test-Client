@@ -3,6 +3,7 @@
   "short_name": "log-client",
   "manifest_version": 2,
   "version": "0.1.8",
+  "minimum_chrome_version": "23",
   "description": "A Simple tool to help test WebSocket Service",
   "icons": {
     "16":  "resources/icon_032.png",
@@ -28,5 +29,5 @@
     "scripts": [ "background.js" ]
   },
 
-  "permissions": [ "tabs" ]
+  "permissions": [ "tabs", {"fileSystem": ["write"]} ]
 }

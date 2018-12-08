@@ -4,6 +4,10 @@
 
     var serverUrl;
     var connectionStatus;
+    var isSaveFile;
+    var getFileWrap;
+    var getFileButton;
+    var filePath;
 
     var connectButton;
     var disconnectButton;
@@ -55,6 +59,17 @@
         reset();
     };
 
+    var onFileSelectChanged = function(checked) {
+        if (checked) {
+            console.log('checked: ');
+            getFileWrap.show();
+        } else {
+            console.log('unchecked: ');
+            filePath.text('');
+            getFileWrap.hide();
+        }
+    }
+
     var onMessage = function(event) {
         var data = event.data;
         if (filter.val()) {
@@ -94,6 +109,14 @@
         localStorage.setItem('historyUrl', serverUrl.val());
     };
 
+    function onInitFs(fs) {
+      
+      }
+
+      function errorHandler(e) {
+        console.log('Error: ' + e.name+"\n" + e.message);
+      }
+
     WebSocketClient = {
         init: function() {
             serverUrl = $('#serverUrl');
@@ -102,6 +125,10 @@
 
             connectButton = $('#connectButton');
             disconnectButton = $('#disconnectButton');
+            isSaveFile = $('#isSaveFile');
+            getFileWrap = $('#getFileWrap');
+            getFileButton = $('#getFileButton');
+            filePath = $('#filePath');
 
             loadHistory();
 
@@ -113,6 +140,25 @@
 
             disconnectButton.click(function(e) {
                 close();
+            });
+
+            isSaveFile.change(function(e) {
+                var checkbox = e.target;
+                onFileSelectChanged(checkbox.checked);
+            });
+
+            getFileButton.click(function(e) {
+                var requestedBytes = 1024*1024*280; 
+
+                navigator.webkitPersistentStorage.requestQuota (
+                // navigator.webkitTemporaryStorage.requestQuota (
+                    requestedBytes, function(grantedBytes) {  
+                        console.log('we were granted ', grantedBytes, 'bytes');
+                        // window.webkitRequestFileSystem(TEMPORARY, grantedBytes, onInitFs, errorHandler); 
+                        window.webkitRequestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler); 
+                
+                    }, function(e) { console.log('Error', e); }
+                );
             });
 
             $('#clearMessage').click(function(e) {
