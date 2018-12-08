@@ -12,6 +12,6 @@ npm run start
 ```
 
 ## install in chrome
-1. 下载我已经打包好的crx  https://pan.baidu.com/s/1Rb_G6NjqfVdDzOh-z32dPA
+1. 下载我已经打包好的crx  https://pan.baidu.com/s/1lRqIK_9S0US2giw5AxUQCg
 1. 解压log-client.crx
 2. 安装 `chrome --> extensions --> Load unpacked`
